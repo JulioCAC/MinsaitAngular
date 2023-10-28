@@ -9,14 +9,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>1</td>
-      <td>Produto 1</td>
-      <td>1234</td>
-      <td>R$80</td>
+    <tr *ngFor="let produto of produtos">
+      <th>{{produto.id}}</th>
+      <td>{{produto.nome}}</td>
+      <td>{{produto.codigoBarras}}</td>
+      <td>{{produto.preco}}</td>
       <td>
         <button type="button" class="btn btn-outline-primary btn-sm mx-3">Editar</button>
         <button type="button" class="btn btn-outline-danger btn-sm">Deletar</button>
       </td>
+    </tr>
   </tbody>
 </table>
