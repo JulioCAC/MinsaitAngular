@@ -1,6 +1,7 @@
 import { Component} from '@angular/core';
 import { IProduto } from 'src/app/interfaces/produto';
 import { ProdutosService } from 'src/app/services/produtos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-produtos',
@@ -22,10 +23,7 @@ export class ProdutosComponent {
       }
     );
   }
-
-  remover(id: number) {
-    this.produtos = this.produtos.filter((produto) => produto.id !== id);
-  }
+ 
 }
 
 

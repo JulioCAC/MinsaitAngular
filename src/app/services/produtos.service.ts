@@ -14,4 +14,12 @@ export class ProdutosService {
   buscarProdutos() {
     return this.http.get<IProduto[]>(this.api);
   }
+  cadastrarProduto(produto: IProduto) {
+    return this.http.post<IProduto>(this.api, produto);
+  }
+  deletarProduto(id: number){
+    return this.http.delete(`${this.api}/${id}`)
+
+  }
+  
 }
