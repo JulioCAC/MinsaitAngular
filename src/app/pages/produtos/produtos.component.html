@@ -15,9 +15,49 @@
       <td>{{produto.codigoBarras}}</td>
       <td>{{produto.preco | currency : 'BRL' }}</td>
       <td>
-        <button type="button" class="btn btn-outline-primary mb-1 btn-sm mx-3">Editar</button>
+        <button type="button" class="btn btn-outline-primary mb-1 btn-sm mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
         <button type="button" class="btn btn-outline-danger mb-1 btn-sm" (click)="delete(produto)">Deletar</button>
       </td>
     </tr>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="border: none;">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="produtoForm">
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <div class="mb-3">
+                      <label for="nome" class="form-label">Nome</label>
+                      <input type="text" class="form-control" id="nome" formControlName="nome">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="mb-3">
+                      <label for="codigoBarras" class="form-label">Código de Barras</label>
+                      <input type="text" class="form-control" id="idade" formControlName="codigoBarras">
+                    </div>
+                  </div>
+                  <div class="col">
+                      <div class="mb-3">
+                        <label for="preco" class="form-label">Preço</label>
+                        <input type="number" class="form-control" id="idade" formControlName="preco">
+                      </div>
+                    </div>
+                </div>
+              </div>
+          </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </tbody>
 </table>

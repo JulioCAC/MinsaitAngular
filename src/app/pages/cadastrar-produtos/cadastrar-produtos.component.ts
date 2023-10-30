@@ -16,18 +16,19 @@ export class CadastrarProdutosComponent {
     codigoBarras: new FormControl("", Validators.required),
     preco: new FormControl(0, Validators.required)
   });
+
+  
   enviar() {
     const produto: IProduto = this.produtoForm.value as IProduto
     
-
-    
     this.produtosService.cadastrarProduto(produto).subscribe(
       (result) => {
-        Swal.fire(
-          'FEITO!',
-          'Produto cadastrado com sucesso!',
-          'success'
-        );
+        Swal.fire({
+          title: 'Produto Cadastrado!',
+          icon: 'success',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#003ee0'
+        });
       },
       (error) => {
         const { message } = error;

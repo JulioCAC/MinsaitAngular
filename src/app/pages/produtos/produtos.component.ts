@@ -1,4 +1,5 @@
 import { Component} from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IProduto } from 'src/app/interfaces/produto';
 import { ProdutosService } from 'src/app/services/produtos.service';
 import Swal from 'sweetalert2';
@@ -10,6 +11,12 @@ import Swal from 'sweetalert2';
 })
 export class ProdutosComponent {
   produtos: IProduto[] = [];
+  produtoForm = new FormGroup({
+    nome: new FormControl("", Validators.required),
+    codigoBarras: new FormControl("", Validators.required),
+    preco: new FormControl(0, Validators.required)
+  });
+
 
   constructor(private produtosService: ProdutosService){}
 
@@ -22,7 +29,12 @@ export class ProdutosComponent {
         console.log(error);
       }
     );
+
   }
+  
+
+
+
   
 
   delete(produto: IProduto) {
@@ -39,7 +51,19 @@ export class ProdutosComponent {
       if (result.isConfirmed) {
         this.produtosService.deletarProduto(produto.id).subscribe(
           () => {
-            Swal.fire('Produto deletado com sucesso!', '', 'success');
+            Swal.fire({
+              title: 'SweetAlert2 is working!',
+              icon: 'success',
+              confirmButtonText: 'OK',
+              confirmButtonColor: '#003ee0'
+            }).then((result)=> {
+              if (result.isConfirmed) {
+                window.location.reload();
+              }
+            });
+            
+            
+  
           },
           (error) => {
             console.error(error);
@@ -49,14 +73,6 @@ export class ProdutosComponent {
       }
     });
   }
-
-
-
-
-
-
-
-
   }
  
 
