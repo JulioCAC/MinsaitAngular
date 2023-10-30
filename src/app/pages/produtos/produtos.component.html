@@ -15,8 +15,8 @@
       <td>{{produto.codigoBarras}}</td>
       <td>{{produto.preco | currency : 'BRL' }}</td>
       <td>
-        <button type="button" class="btn btn-outline-primary btn-sm mx-3">Editar</button>
-        <button type="button" class="btn btn-outline-danger btn-sm" >Deletar</button>
+        <button type="button" class="btn btn-outline-primary mb-1 btn-sm mx-3">Editar</button>
+        <button type="button" class="btn btn-outline-danger mb-1 btn-sm" (click)="delete(produto)">Deletar</button>
       </td>
     </tr>
   </tbody>

@@ -25,7 +25,7 @@ export class CadastrarProdutosComponent {
       (result) => {
         Swal.fire(
           'FEITO!',
-          'Usuário cadastrado com sucesso!',
+          'Produto cadastrado com sucesso!',
           'success'
         );
       },
@@ -35,5 +35,6 @@ export class CadastrarProdutosComponent {
       }
     );
   }
+  
 
 }

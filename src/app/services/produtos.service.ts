@@ -18,8 +18,7 @@ export class ProdutosService {
     return this.http.post<IProduto>(this.api, produto);
   }
   deletarProduto(id: number){
-    return this.http.delete(`${this.api}/${id}`)
-
+    return this.http.delete<IProduto>(`${this.api}/${id}`)
   }
   
 }
