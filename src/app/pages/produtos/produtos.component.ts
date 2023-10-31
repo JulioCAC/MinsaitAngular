@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 export class ProdutosComponent {
   produtos: IProduto[] = [];
   produtoForm = new FormGroup({
+    id: new FormControl("", Validators.required),
     nome: new FormControl("", Validators.required),
     codigoBarras: new FormControl("", Validators.required),
     preco: new FormControl(0, Validators.required)
@@ -30,6 +31,34 @@ export class ProdutosComponent {
       }
     );
 
+  }
+  alterar() {
+    const produto: IProduto = this.produtoForm.value as unknown as IProduto;
+    const novoProduto: IProduto = {
+      id: produto.id,
+      nome: produto.nome,
+      codigoBarras: produto.codigoBarras,
+      preco: produto.preco
+    };
+  
+    this.produtosService.alterarProduto(novoProduto.id, novoProduto).subscribe(
+      (result) => {
+        Swal.fire({
+          title: 'Produto Alterado!',
+          icon: 'success',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#003ee0'
+        }).then((result)=> {
+          if (result.isConfirmed) {
+            window.location.reload();
+          }
+        });;
+      },
+      (error) => {
+        const { message } = error;
+        Swal.fire('DEU ERRO', message, 'error');
+      }
+    );
   }
   
 
@@ -52,7 +81,7 @@ export class ProdutosComponent {
         this.produtosService.deletarProduto(produto.id).subscribe(
           () => {
             Swal.fire({
-              title: 'SweetAlert2 is working!',
+              title: 'Produto Deletado!',
               icon: 'success',
               confirmButtonText: 'OK',
               confirmButtonColor: '#003ee0'

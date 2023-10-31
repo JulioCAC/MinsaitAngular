@@ -20,7 +20,7 @@ export class ProdutosService {
   deletarProduto(id: number){
     return this.http.delete<IProduto>(`${this.api}/${id}`)
   }
-  alterarProduto(produto: IProduto){
-    return this.http.put<IProduto>(this.api, produto)
+  alterarProduto(id: number, produto: IProduto){
+    return this.http.put<IProduto>(`${this.api}/${id}`, produto)
   }
 }
