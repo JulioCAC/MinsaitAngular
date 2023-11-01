@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router'; // Importe o Router aqui
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IProduto } from 'src/app/interfaces/produto';
 import { ProdutosService } from 'src/app/services/produtos.service';
@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./editar-produtos.component.css']
 })
 export class EditarProdutosComponent implements OnInit {
-  constructor(private produtosService: ProdutosService, private route: ActivatedRoute) {}
+  constructor(private produtosService: ProdutosService, private route: ActivatedRoute, private router: Router) {} // Injete o Router aqui
 
   produtoForm: FormGroup = new FormGroup({
     id: new FormControl(null),  
@@ -36,11 +36,11 @@ export class EditarProdutosComponent implements OnInit {
           icon: 'success',
           confirmButtonText: 'OK',
           confirmButtonColor: '#003ee0'
-        }).then((result)=> {
-          if (result.isConfirmed) {
-            window.location.reload();
-          }
-        });;
+        }).then(() => {
+          setTimeout(() => {
+            this.router.navigate(['/produtos']);
+          }, 500);
+        });
       },
       (error) => {
         const { message } = error;
@@ -49,4 +49,3 @@ export class EditarProdutosComponent implements OnInit {
     );
   }  
 }
-

@@ -1,42 +1,45 @@
-<h4 class="mt-3 mb-3">Cadastro de Produtos</h4>
-<form [formGroup]="produtoForm" (submit)="enviar()">
-    <div class="container">
-      <div class="row"> 
-        <div class="col">
-          <div class="mb-3">
-            <label for="nome" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="nome" formControlName="nome">
-            <div class="text-danger my-2" *ngIf="produtoForm.get('nome')?.hasError('maxlength')">
-                O nome excede o limite de 50 caracteres permitido.
-            </div>
-            <div class="text-danger my-2" *ngIf="produtoForm.get('nome')?.hasError('minlength')">
-                O nome deve conter ao menos 4 caracteres.
-            </div>
+
+<div class="container mt-4">
+  <h4 class="mt-3 mb-3">Cadastro de Produtos</h4>
+  <form [formGroup]="produtoForm" (submit)="enviar()">
+    <div class="row">
+      <div class="col">
+        <div class="mb-3">
+          <label for="nome" class="form-label">Nome</label>
+          <input type="text" class="form-control input-box" id="nome" formControlName="nome">
+          <div class="text-danger my-2" *ngIf="produtoForm.get('nome')?.hasError('maxlength')">
+              O nome excede o limite de 50 caracteres permitido.
+          </div>
+          <div class="text-danger my-2" *ngIf="produtoForm.get('nome')?.hasError('minlength')">
+              O nome deve conter pelo menos 4 caracteres.
           </div>
         </div>
-        <div class="col">
-          <div class="mb-3">
-            <label for="codigoBarras" class="form-label">Código de Barras</label>
-            <input type="text" class="form-control" id="codigoBarras" formControlName="codigoBarras">
-            <div class="text-danger my-2" *ngIf="produtoForm.get('codigoBarras')?.hasError('maxlength')">
-                O código de barras excede o limite de 20 caracteres permitido.
-            </div>
-            <div class="text-danger my-2" *ngIf="produtoForm.get('codigoBarras')?.hasError('minlength')">
-                O código barras deve conter ao menos 3 caracteres.
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-            <div class="mb-3">
-              <label for="preco" class="form-label">Preço</label>
-              <input type="number" class="form-control" id="preco" formControlName="preco">
-              <div class="text-danger" *ngIf="produtoForm.get('preco')?.hasError('pattern')">
-                O preço excede o limite de 6 dígitos inteiros e 2 casas decimais permitido.
-              </div>            
-            </div>
-          </div>
       </div>
-      <a class="btn btn-secondary me-1" routerLink="/produtos">Voltar</a>
-      <button class="btn btn-primary" type="submit" [disabled]="produtoForm.invalid">Cadastrar</button>
+      <div class="col">
+        <div class="mb-3">
+          <label for="codigoBarras" class="form-label">Código de Barras</label>
+          <input type="text" class="form-control input-box" id="codigoBarras" formControlName="codigoBarras">
+          <div class="text-danger my-2" *ngIf="produtoForm.get('codigoBarras')?.hasError('maxlength')">
+              O código de barras excede o limite de 20 caracteres permitido.
+          </div>
+          <div class="text-danger my-2" *ngIf="produtoForm.get('codigoBarras')?.hasError('minlength')">
+              O código de barras deve conter pelo menos 3 caracteres.
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="mb-3">
+          <label for="preco" class="form-label">Preço</label>
+          <input type="number" class="form-control input-box" id="preco" formControlName="preco">
+          <div class="text-danger" *ngIf="produtoForm.get('preco')?.hasError('pattern')">
+            O preço excede o limite de 6 dígitos inteiros e 2 casas decimais permitido.
+          </div>
+        </div>
+      </div>
     </div>
-</form>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button class="btn btn-primary" type="submit" [disabled]="produtoForm.invalid">Cadastrar</button>
+      <a class="btn btn-secondary me-1" routerLink="/produtos">Voltar</a>
+    </div>
+  </form>
+</div>
