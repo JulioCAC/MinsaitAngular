@@ -4,6 +4,7 @@ import { InicioComponent } from './pages/inicio/inicio.component';
 import { ProdutosComponent } from './pages/produtos/produtos.component';
 import { CadastrarProdutosComponent } from './pages/cadastrar-produtos/cadastrar-produtos.component';
 
+
 const routes: Routes = [
   {
     path: "", component: InicioComponent

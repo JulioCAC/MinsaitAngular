@@ -12,9 +12,10 @@ import Swal from 'sweetalert2';
 export class CadastrarProdutosComponent {
   constructor(private produtosService: ProdutosService){}
   produtoForm = new FormGroup({
-    nome: new FormControl("", Validators.required),
-    codigoBarras: new FormControl("", Validators.required),
-    preco: new FormControl(0, Validators.required)
+    
+    nome: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
+    codigoBarras: new FormControl("", [Validators.minLength(3), Validators.maxLength(20)]),
+    preco: new FormControl(0,[Validators.required, Validators.minLength(1), Validators.maxLength(8)])
   });
 
   

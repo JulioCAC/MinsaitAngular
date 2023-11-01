@@ -10,13 +10,15 @@ import { InicioComponent } from './pages/inicio/inicio.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ProdutosComponent,
     CadastrarProdutosComponent,
-    InicioComponent
+    InicioComponent,
   ],
   imports: [
     BrowserModule,

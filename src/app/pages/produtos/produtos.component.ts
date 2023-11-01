@@ -10,16 +10,17 @@ import Swal from 'sweetalert2';
   styleUrls: ['./produtos.component.css']
 })
 export class ProdutosComponent {
+  constructor(private produtosService: ProdutosService){}
+
   produtos: IProduto[] = [];
+  idCapturado: number | null = null;
+
   produtoForm = new FormGroup({
     id: new FormControl("", Validators.required),
-    nome: new FormControl("", Validators.required),
-    codigoBarras: new FormControl("", Validators.required),
-    preco: new FormControl(0, Validators.required)
+    nome: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
+    codigoBarras: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
+    preco: new FormControl(0, [Validators.required, Validators.minLength(1), Validators.maxLength(8)])
   });
-
-
-  constructor(private produtosService: ProdutosService){}
 
   ngOnInit() {
     this.produtosService.buscarProdutos().subscribe(
@@ -30,18 +31,11 @@ export class ProdutosComponent {
         console.log(error);
       }
     );
-
   }
+
   alterar() {
     const produto: IProduto = this.produtoForm.value as unknown as IProduto;
-    const novoProduto: IProduto = {
-      id: produto.id,
-      nome: produto.nome,
-      codigoBarras: produto.codigoBarras,
-      preco: produto.preco
-    };
-  
-    this.produtosService.alterarProduto(novoProduto.id, novoProduto).subscribe(
+    this.produtosService.alterarProduto(produto.id, produto).subscribe(
       (result) => {
         Swal.fire({
           title: 'Produto Alterado!',
@@ -60,10 +54,6 @@ export class ProdutosComponent {
       }
     );
   }
-  
-
-
-
   
 
   delete(produto: IProduto) {
@@ -90,9 +80,7 @@ export class ProdutosComponent {
                 window.location.reload();
               }
             });
-            
-            
-  
+
           },
           (error) => {
             console.error(error);
@@ -102,7 +90,7 @@ export class ProdutosComponent {
       }
     });
   }
-  }
+}
  
 
 
