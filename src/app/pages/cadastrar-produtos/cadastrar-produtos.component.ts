@@ -13,9 +13,9 @@ export class CadastrarProdutosComponent {
   constructor(private produtosService: ProdutosService){}
   produtoForm = new FormGroup({
     
-    nome: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
+    nome: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
     codigoBarras: new FormControl("", [Validators.minLength(3), Validators.maxLength(20)]),
-    preco: new FormControl(0,[Validators.required, Validators.minLength(1), Validators.maxLength(8)])
+    preco: new FormControl(0, [Validators.required, Validators.min(0),  Validators.pattern(/^\d{1,6}(\.\d{0,2})?$/)])
   });
 
   

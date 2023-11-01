@@ -13,13 +13,11 @@ export class ProdutosComponent {
   constructor(private produtosService: ProdutosService){}
 
   produtos: IProduto[] = [];
-  idCapturado: number | null = null;
-
   produtoForm = new FormGroup({
-    id: new FormControl("", Validators.required),
-    nome: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
+    id: new FormControl(),
+    nome: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
     codigoBarras: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
-    preco: new FormControl(0, [Validators.required, Validators.minLength(1), Validators.maxLength(8)])
+    preco: new FormControl(0, [Validators.required, Validators.min(0),  Validators.pattern(/^\d{1,6}(\.\d{0,2})?$/)])
   });
 
   ngOnInit() {
@@ -33,6 +31,14 @@ export class ProdutosComponent {
     );
   }
 
+  buscar(produto: IProduto) {
+    this.produtosService.buscarProduto(produto.id).subscribe((produtoRetornado) => {
+      const idCapturado = produtoRetornado.id;
+      console.log(idCapturado)
+      this.produtoForm.get('id')?.setValue(idCapturado);
+    });
+  }
+  
   alterar() {
     const produto: IProduto = this.produtoForm.value as unknown as IProduto;
     this.produtosService.alterarProduto(produto.id, produto).subscribe(

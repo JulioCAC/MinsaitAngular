@@ -23,4 +23,8 @@ export class ProdutosService {
   alterarProduto(id: number, produto: IProduto){
     return this.http.put<IProduto>(`${this.api}/${id}`, produto)
   }
+  buscarProduto(id: number){
+    return this.http.get<IProduto>(`${this.api}/${id}`);
+
+  }
 }
