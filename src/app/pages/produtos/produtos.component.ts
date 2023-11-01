@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { IProduto } from 'src/app/interfaces/produto';
 import { ProdutosService } from 'src/app/services/produtos.service';
 import Swal from 'sweetalert2';
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./produtos.component.css']
 })
 export class ProdutosComponent {
-  constructor(private produtosService: ProdutosService){}
+  constructor(private produtosService: ProdutosService, private router: Router) {}
 
   produtos: IProduto[] = [];
   produtoForm = new FormGroup({
@@ -34,33 +35,9 @@ export class ProdutosComponent {
   buscar(produto: IProduto) {
     this.produtosService.buscarProduto(produto.id).subscribe((produtoRetornado) => {
       const idCapturado = produtoRetornado.id;
-      console.log(idCapturado)
-      this.produtoForm.get('id')?.setValue(idCapturado);
+      this.router.navigate(['/editar-produtos', idCapturado]);
     });
   }
-  
-  alterar() {
-    const produto: IProduto = this.produtoForm.value as unknown as IProduto;
-    this.produtosService.alterarProduto(produto.id, produto).subscribe(
-      (result) => {
-        Swal.fire({
-          title: 'Produto Alterado!',
-          icon: 'success',
-          confirmButtonText: 'OK',
-          confirmButtonColor: '#003ee0'
-        }).then((result)=> {
-          if (result.isConfirmed) {
-            window.location.reload();
-          }
-        });;
-      },
-      (error) => {
-        const { message } = error;
-        Swal.fire('DEU ERRO', message, 'error');
-      }
-    );
-  }
-  
 
   delete(produto: IProduto) {
     Swal.fire({
@@ -86,7 +63,6 @@ export class ProdutosComponent {
                 window.location.reload();
               }
             });
-
           },
           (error) => {
             console.error(error);
