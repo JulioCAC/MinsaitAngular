@@ -13,7 +13,7 @@
       <th class="text-center">{{produto.id}}</th>
       <td>{{produto.nome}}</td>
       <td>{{produto.codigoBarras}}</td>
-      <td>{{ '' + produto.preco | currency : 'BRL'}}</td>
+      <td>{{produto.preco | currency : 'BRL'}}</td>
       <td class="text-center">
         <button type="button" class="btn btn-outline-primary bi bi-pencil-fill mb-1 mx-2" (click)="buscar(produto)" routerLink="/produtos/cadastrar" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"></button>
         <button type="button" class="btn btn-outline-danger bi bi-trash3-fill mb-1 mx-2" (click)="delete(produto)"></button>
