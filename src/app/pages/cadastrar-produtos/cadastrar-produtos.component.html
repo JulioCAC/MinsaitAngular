@@ -7,7 +7,10 @@
             <label for="nome" class="form-label">Nome</label>
             <input type="text" class="form-control" id="nome" formControlName="nome">
             <div class="text-danger my-2" *ngIf="produtoForm.get('nome')?.hasError('maxlength')">
-              O nome excede o limite de caracteres permitido.
+                O nome excede o limite de 50 caracteres permitido.
+            </div>
+            <div class="text-danger my-2" *ngIf="produtoForm.get('nome')?.hasError('minlength')">
+                O nome deve conter ao menos 4 caracteres.
             </div>
           </div>
         </div>
@@ -16,7 +19,10 @@
             <label for="codigoBarras" class="form-label">Código de Barras</label>
             <input type="text" class="form-control" id="codigoBarras" formControlName="codigoBarras">
             <div class="text-danger my-2" *ngIf="produtoForm.get('codigoBarras')?.hasError('maxlength')">
-              O código de barras excede o limite de caracteres permitido.
+                O código de barras excede o limite de 20 caracteres permitido.
+            </div>
+            <div class="text-danger my-2" *ngIf="produtoForm.get('codigoBarras')?.hasError('minlength')">
+                O código barras deve conter ao menos 3 caracteres.
             </div>
           </div>
         </div>
@@ -25,7 +31,7 @@
               <label for="preco" class="form-label">Preço</label>
               <input type="number" class="form-control" id="preco" formControlName="preco">
               <div class="text-danger" *ngIf="produtoForm.get('preco')?.hasError('pattern')">
-                O preço excede o limite máximo permitido.
+                O preço excede o limite de 6 dígitos inteiros e 2 casas decimais permitido.
               </div>            
             </div>
           </div>

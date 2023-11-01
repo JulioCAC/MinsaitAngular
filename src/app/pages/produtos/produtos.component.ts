@@ -14,12 +14,6 @@ export class ProdutosComponent {
   constructor(private produtosService: ProdutosService, private router: Router) {}
 
   produtos: IProduto[] = [];
-  produtoForm = new FormGroup({
-    id: new FormControl(),
-    nome: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
-    codigoBarras: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
-    preco: new FormControl(0, [Validators.required, Validators.min(0),  Validators.pattern(/^\d{1,6}(\.\d{0,2})?$/)])
-  });
 
   ngOnInit() {
     this.produtosService.buscarProdutos().subscribe(
