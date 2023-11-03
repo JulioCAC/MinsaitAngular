@@ -1,0 +1,30 @@
+<header class="text-center py-4">
+    <h2>Projeto Angular de Gestão de Produtos - Avaliação Minsait</h2>
+</header>
+<main class="container my-4">
+    <section>
+        <h3>Descrição do Projeto</h3>
+        <p>Este projeto consiste em uma aplicação Angular para gerenciar produtos, sendo uma avaliação do curso de capacitação da Minsait. A aplicação permite listar, cadastrar, editar e deletar produtos de uma loja.</p>
+    </section>
+    <section>
+        <h4>Funcionalidades</h4>
+        <ul>
+            <li>Listagem de Produtos: Exibe uma tabela com os produtos, incluindo id, nome, código de barras, preço e opções de editar/deletar.</li>
+            <li>Cadastro de Produtos: Permite adicionar novos produtos com nome, código de barras e preço, com validações nos campos.</li>
+            <li>Edição de Produtos: Possibilita a edição de produtos existentes, mantendo a mesma estrutura de campos e validações.</li>
+        </ul>
+    </section>
+    <section>
+        <h4>Arquitetura do Projeto</h4>
+        <p>O projeto segue uma arquitetura de componentes Angular para separar as funcionalidades em diferentes partes do aplicativo. Os componentes principais incluem:</p>
+        <ul>
+            <li>produtos.component: Para exibir a lista de produtos e deletar produtos existentes.</li>
+            <li>cadastra-produtos.component: Para adicionar novos produtos.</li>
+            <li>editar-produtos.component: Para editar produtos existentes.</li>
+        </ul>
+    </section>
+    <section>
+        <h4>Comunicação com a API Spring</h4>
+        <p>Para buscar, cadastrar, editar e excluir produtos, a aplicação se comunica com uma API Spring desenvolvida na aula de Spring do curso de capacitação. Os serviços HTTP são usados para interagir com a API e os dados dos produtos.</p>
+    </section>
+</main>

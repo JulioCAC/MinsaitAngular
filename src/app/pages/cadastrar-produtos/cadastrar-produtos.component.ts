@@ -35,5 +35,6 @@ export class CadastrarProdutosComponent {
         Swal.fire('DEU ERRO', message, 'error');
       }
     );
+    this.produtoForm.reset();
   }
 }
